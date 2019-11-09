@@ -19,9 +19,9 @@ def setup():
   global inputTSV
   global outputFolder
 
-  parser = argparse.ArgumentParser(description='Process MS-Celeb TSV file')
-  parser.add_argument('inputTSV', help='MS-Celeb TSV to extract')
-  parser.add_argument('outputFolder', help='Path to exptract images to')
+  parser = argparse.ArgumentParser(description='Process MS Celeb TSV file')
+  parser.add_argument('inputTSV', help='MS Celeb TSV to extract')
+  parser.add_argument('outputFolder', help='Path to extract images to')
   args = parser.parse_args()
 
   inputTSV = os.path.normpath(args.inputTSV)

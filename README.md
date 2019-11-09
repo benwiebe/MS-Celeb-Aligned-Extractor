@@ -10,7 +10,7 @@ Process MS-Celeb TSV file
 
 positional arguments:
   inputTSV      MS-Celeb TSV to extract
-  outputFolder  Path to exptract images to
+  outputFolder  Path to extract images to
 
 optional arguments:
   -h, --help    show this help message and exit
