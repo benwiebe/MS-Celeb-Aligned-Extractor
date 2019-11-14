@@ -39,11 +39,14 @@ def loadCleanedData():
     line = file.readline()
     while line:
       parts = line.split(' ')
+      # Use correct separator for this OS
       parts[1].replace('/', os.path.sep)
+      # Create a dict with the old filepath as the key and the new entity as the corresponding value
       cleanedDict[parts[1]] = parts[0]
 
       line = file.readline()
 
+############### FILENAME HELPER METHOD ###############
 def genFilename(entity, searchRank, faceId):
   return entity + os.path.sep + searchRank + "_" + faceId + ".jpg"
 
@@ -77,7 +80,9 @@ def main():
           img_data = base64.b64decode(data_info[6])
           output_file_path = outputFolder + os.path.sep + filename
 
+          # Check if the current image needs to be reclassified
           if output_file_path in cleanedDict:
+            # If so, change the dest path and delete this entry from the remaining files to clean
             orig_path = output_file_path
             output_file_path = outputFolder + os.path.sep + genFilename(cleanedDict[orig_path], data_info[1], data_info[4])
             del cleanedDict[orig_path]
