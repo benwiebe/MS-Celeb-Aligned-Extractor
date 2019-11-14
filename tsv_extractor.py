@@ -35,6 +35,7 @@ def main():
 
   with open(inputTSV, "r", encoding='utf-8') as fid:
     with open(outputFolder + '/bboxes.txt', 'w') as bbox_file:
+      img_num = 1
       while True:
         line = fid.readline()
         if line:
@@ -60,9 +61,17 @@ def main():
           img_file = open(output_file_path, 'wb')
           img_file.write(img_data)
           img_file.close()
+
+          # Print progress every 100 images to show we're still going
+          if img_num % 100 == 0:
+            print("%d images done" % img_num)
+
+          img_num = img_num + 1
+
         else:
           break
-
+  
+  print("Done!")
 ############### DEFAULT ENTRYPOINT ###############
 if __name__ == '__main__':
   setup()
