@@ -26,7 +26,7 @@ def setup():
   parser = argparse.ArgumentParser(description='Process MS Celeb TSV file')
   parser.add_argument('inputTSV', help='MS Celeb TSV to extract')
   parser.add_argument('outputFolder', help='Path to extract images to')
-  parser.add_argument('-c', '--cleaned-list', help='Path to file with cleaned classifications', target='cleanedList')
+  parser.add_argument('-c', '--cleaned-list', help='Path to file with cleaned classifications', dest='cleanedList')
   args = parser.parse_args()
 
   inputTSV = os.path.normpath(args.inputTSV)
@@ -75,7 +75,8 @@ def main():
           bbox_file.write(filename + " "+ (" ".join(str(bbox_value) for bbox_value  in bbox)) + "\n")
 
           img_data = base64.b64decode(data_info[6])
-          output_file_path = outputFolder + os.path.sep + filename 
+          output_file_path = outputFolder + os.path.sep + filename
+
           if output_file_path in cleanedDict:
             orig_path = output_file_path
             output_file_path = outputFolder + os.path.sep + genFilename(cleanedDict[orig_path], data_info[1], data_info[4])
